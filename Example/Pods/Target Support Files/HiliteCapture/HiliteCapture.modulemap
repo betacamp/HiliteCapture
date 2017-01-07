@@ -1,0 +1,6 @@
+framework module HiliteCapture {
+  umbrella header "HiliteCapture-umbrella.h"
+
+  export *
+  module * { export * }
+}
