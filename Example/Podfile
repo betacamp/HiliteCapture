@@ -1,0 +1,14 @@
+use_frameworks!
+
+target 'HiliteCapture_Example' do
+  pod 'HiliteCapture', :path => '../'
+
+  target 'HiliteCapture_Tests' do
+    inherit! :search_paths
+
+    pod 'Quick', '~> 1.0.0'
+  pod 'Nimble', '~> 5.1.1'
+  pod 'FBSnapshotTestCase'
+  pod 'Nimble-Snapshots'
+  end
+end
