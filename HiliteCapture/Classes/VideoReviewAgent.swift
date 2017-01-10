@@ -2,8 +2,8 @@ import Foundation
 import HiliteCore
 
 public class VideoReviewAgent {
-    var capturedVideo:CapturedVideo!
-    let delegate: VideoReviewAgentDelegate?
+    public var capturedVideo:CapturedVideo!
+    public let delegate: VideoReviewAgentDelegate?
     
     public init(capturedVideo: CapturedVideo, delegate: VideoReviewAgentDelegate) {
         self.delegate = delegate
