@@ -41,7 +41,8 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 
-  s.dependency "HiliteCore", "~> 0.1.10-alpha"
+  s.dependency "HiliteCore", "~> 0.1.18-alpha"
+  s.dependency "HiliteUI", "~> 0.1.7-alpha"
   s.dependency "SwiftyJSON"
 
 end

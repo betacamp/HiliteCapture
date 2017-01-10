@@ -25,6 +25,25 @@
 		1A34DAD0A12D360415BA58F4A9BE70FC /* DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18346C82D017A21FF2D24B18D2A19F96 /* DSL.swift */; };
 		1A9126F01EBC2E30B2E6F881B6B87BCD /* Stringers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DD3A78EA1ED665AB5B536675F79D11 /* Stringers.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		1AFD22FF1E20718D0040B659 /* StopAndGoCaptureSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD22FE1E20718D0040B659 /* StopAndGoCaptureSession.swift */; };
+		1AFD23011E207C320040B659 /* CaptureSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD23001E207C320040B659 /* CaptureSessionDelegate.swift */; };
+		1AFD23041E207C920040B659 /* CaptureDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD23021E207C920040B659 /* CaptureDevice.swift */; };
+		1AFD23051E207C920040B659 /* CaptureSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD23031E207C920040B659 /* CaptureSession.swift */; };
+		1AFD230D1E209F170040B659 /* PhotoCaptureSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD230C1E209F170040B659 /* PhotoCaptureSession.swift */; };
+		1AFD230F1E20A0230040B659 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD230E1E20A0230040B659 /* Extensions.swift */; };
+		1AFD23151E20A0CE0040B659 /* VideoCaptureAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD23101E20A0CE0040B659 /* VideoCaptureAgent.swift */; };
+		1AFD23161E20A0CE0040B659 /* VideoCaptureAgentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD23111E20A0CE0040B659 /* VideoCaptureAgentDelegate.swift */; };
+		1AFD23171E20A0CE0040B659 /* VideoCaptureOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD23121E20A0CE0040B659 /* VideoCaptureOverlayView.swift */; };
+		1AFD23181E20A0CE0040B659 /* VideoCaptureOverlayViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD23131E20A0CE0040B659 /* VideoCaptureOverlayViewDelegate.swift */; };
+		1AFD23191E20A0CE0040B659 /* VideoCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD23141E20A0CE0040B659 /* VideoCaptureViewController.swift */; };
+		1AFD231E1E20A20D0040B659 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD231A1E20A20D0040B659 /* VideoPlayerView.swift */; };
+		1AFD231F1E20A20D0040B659 /* VideoReviewAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD231B1E20A20D0040B659 /* VideoReviewAgent.swift */; };
+		1AFD23201E20A20D0040B659 /* VideoReviewAgentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD231C1E20A20D0040B659 /* VideoReviewAgentDelegate.swift */; };
+		1AFD23211E20A20D0040B659 /* VideoReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD231D1E20A20D0040B659 /* VideoReviewView.swift */; };
+		1AFD23491E20B89C0040B659 /* InlineVideoReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD23481E20B89C0040B659 /* InlineVideoReviewView.swift */; };
+		1AFD23761E21BB340040B659 /* StandardVideoCaptureOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD23751E21BB340040B659 /* StandardVideoCaptureOverlayView.swift */; };
+		1AFD23781E21BC0A0040B659 /* StandardRecordProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD23771E21BC0A0040B659 /* StandardRecordProgressView.swift */; };
+		1AFD23A41E2426B30040B659 /* RecordProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD23A31E2426B30040B659 /* RecordProgressView.swift */; };
+		1AFD23A61E24273E0040B659 /* RecordProgressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD23A51E24273E0040B659 /* RecordProgressButton.swift */; };
 		1F38AD38E11E79251FD34A7CF05CDB65 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF979DB93FFC369BEC3D6B3C8B9C7A /* Foundation.framework */; };
 		232A44C5F6145555918520FA61E75E61 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA570EBAAA31239A6305CFD1BA04587C /* Expression.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		24B2AFC31898725750519372CFB2350A /* DSL.h in Headers */ = {isa = PBXBuildFile; fileRef = F3696EC637DC2B4E0D9042A916287FDF /* DSL.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -227,6 +246,25 @@
 		1927B151D5046BC3FA820B58EA5DFC21 /* NMBStringify.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMBStringify.h; path = Sources/NimbleObjectiveC/NMBStringify.h; sourceTree = "<group>"; };
 		19F5E05678A777D0D5B47DED76525135 /* SuiteHooks.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SuiteHooks.swift; path = Sources/Quick/Hooks/SuiteHooks.swift; sourceTree = "<group>"; };
 		1AFD22FE1E20718D0040B659 /* StopAndGoCaptureSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopAndGoCaptureSession.swift; sourceTree = "<group>"; };
+		1AFD23001E207C320040B659 /* CaptureSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureSessionDelegate.swift; sourceTree = "<group>"; };
+		1AFD23021E207C920040B659 /* CaptureDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureDevice.swift; sourceTree = "<group>"; };
+		1AFD23031E207C920040B659 /* CaptureSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureSession.swift; sourceTree = "<group>"; };
+		1AFD230C1E209F170040B659 /* PhotoCaptureSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureSession.swift; sourceTree = "<group>"; };
+		1AFD230E1E20A0230040B659 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1AFD23101E20A0CE0040B659 /* VideoCaptureAgent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCaptureAgent.swift; sourceTree = "<group>"; };
+		1AFD23111E20A0CE0040B659 /* VideoCaptureAgentDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCaptureAgentDelegate.swift; sourceTree = "<group>"; };
+		1AFD23121E20A0CE0040B659 /* VideoCaptureOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCaptureOverlayView.swift; sourceTree = "<group>"; };
+		1AFD23131E20A0CE0040B659 /* VideoCaptureOverlayViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCaptureOverlayViewDelegate.swift; sourceTree = "<group>"; };
+		1AFD23141E20A0CE0040B659 /* VideoCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCaptureViewController.swift; sourceTree = "<group>"; };
+		1AFD231A1E20A20D0040B659 /* VideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		1AFD231B1E20A20D0040B659 /* VideoReviewAgent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoReviewAgent.swift; sourceTree = "<group>"; };
+		1AFD231C1E20A20D0040B659 /* VideoReviewAgentDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoReviewAgentDelegate.swift; sourceTree = "<group>"; };
+		1AFD231D1E20A20D0040B659 /* VideoReviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoReviewView.swift; sourceTree = "<group>"; };
+		1AFD23481E20B89C0040B659 /* InlineVideoReviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InlineVideoReviewView.swift; sourceTree = "<group>"; };
+		1AFD23751E21BB340040B659 /* StandardVideoCaptureOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardVideoCaptureOverlayView.swift; sourceTree = "<group>"; };
+		1AFD23771E21BC0A0040B659 /* StandardRecordProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardRecordProgressView.swift; sourceTree = "<group>"; };
+		1AFD23A31E2426B30040B659 /* RecordProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordProgressView.swift; sourceTree = "<group>"; };
+		1AFD23A51E24273E0040B659 /* RecordProgressButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordProgressButton.swift; sourceTree = "<group>"; };
 		1BDBCC46E3D661CDCE407B1E51476E21 /* Nimble.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D5AB00D217C687CB83AE825D8B15F32 /* CwlCatchBadInstruction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CwlCatchBadInstruction.swift; path = Sources/Lib/CwlPreconditionTesting/CwlPreconditionTesting/CwlCatchBadInstruction.swift; sourceTree = "<group>"; };
 		1E91D3D71D09F9D765DA1760C4501113 /* NMBExpectation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NMBExpectation.swift; path = Sources/Nimble/Adapters/NMBExpectation.swift; sourceTree = "<group>"; };
@@ -462,7 +500,26 @@
 		0936D356D6AF2A0480B2BBC4462A5488 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1AFD23A51E24273E0040B659 /* RecordProgressButton.swift */,
+				1AFD23A31E2426B30040B659 /* RecordProgressView.swift */,
+				1AFD23751E21BB340040B659 /* StandardVideoCaptureOverlayView.swift */,
+				1AFD23771E21BC0A0040B659 /* StandardRecordProgressView.swift */,
+				1AFD23481E20B89C0040B659 /* InlineVideoReviewView.swift */,
+				1AFD230C1E209F170040B659 /* PhotoCaptureSession.swift */,
+				1AFD23021E207C920040B659 /* CaptureDevice.swift */,
+				1AFD23031E207C920040B659 /* CaptureSession.swift */,
+				1AFD23001E207C320040B659 /* CaptureSessionDelegate.swift */,
 				1AFD22FE1E20718D0040B659 /* StopAndGoCaptureSession.swift */,
+				1AFD230E1E20A0230040B659 /* Extensions.swift */,
+				1AFD23101E20A0CE0040B659 /* VideoCaptureAgent.swift */,
+				1AFD23111E20A0CE0040B659 /* VideoCaptureAgentDelegate.swift */,
+				1AFD23121E20A0CE0040B659 /* VideoCaptureOverlayView.swift */,
+				1AFD23131E20A0CE0040B659 /* VideoCaptureOverlayViewDelegate.swift */,
+				1AFD23141E20A0CE0040B659 /* VideoCaptureViewController.swift */,
+				1AFD231A1E20A20D0040B659 /* VideoPlayerView.swift */,
+				1AFD231B1E20A20D0040B659 /* VideoReviewAgent.swift */,
+				1AFD231C1E20A20D0040B659 /* VideoReviewAgentDelegate.swift */,
+				1AFD231D1E20A20D0040B659 /* VideoReviewView.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1098,6 +1155,25 @@
 			files = (
 				01399B80D70D4B4AB1D39D89984AA116 /* HiliteCapture-dummy.m in Sources */,
 				1AFD22FF1E20718D0040B659 /* StopAndGoCaptureSession.swift in Sources */,
+				1AFD23191E20A0CE0040B659 /* VideoCaptureViewController.swift in Sources */,
+				1AFD23491E20B89C0040B659 /* InlineVideoReviewView.swift in Sources */,
+				1AFD230D1E209F170040B659 /* PhotoCaptureSession.swift in Sources */,
+				1AFD23781E21BC0A0040B659 /* StandardRecordProgressView.swift in Sources */,
+				1AFD23211E20A20D0040B659 /* VideoReviewView.swift in Sources */,
+				1AFD23181E20A0CE0040B659 /* VideoCaptureOverlayViewDelegate.swift in Sources */,
+				1AFD23041E207C920040B659 /* CaptureDevice.swift in Sources */,
+				1AFD23A61E24273E0040B659 /* RecordProgressButton.swift in Sources */,
+				1AFD23171E20A0CE0040B659 /* VideoCaptureOverlayView.swift in Sources */,
+				1AFD23151E20A0CE0040B659 /* VideoCaptureAgent.swift in Sources */,
+				1AFD23051E207C920040B659 /* CaptureSession.swift in Sources */,
+				1AFD231F1E20A20D0040B659 /* VideoReviewAgent.swift in Sources */,
+				1AFD23161E20A0CE0040B659 /* VideoCaptureAgentDelegate.swift in Sources */,
+				1AFD23A41E2426B30040B659 /* RecordProgressView.swift in Sources */,
+				1AFD23201E20A20D0040B659 /* VideoReviewAgentDelegate.swift in Sources */,
+				1AFD23011E207C320040B659 /* CaptureSessionDelegate.swift in Sources */,
+				1AFD231E1E20A20D0040B659 /* VideoPlayerView.swift in Sources */,
+				1AFD230F1E20A0230040B659 /* Extensions.swift in Sources */,
+				1AFD23761E21BB340040B659 /* StandardVideoCaptureOverlayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

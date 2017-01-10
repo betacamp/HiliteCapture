@@ -3,24 +3,24 @@ import AVFoundation
 import CoreMedia
 import HiliteCore
 
-class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate {
+open class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate {
     let captureDevice = CaptureDevice()
     let captureSession = AVCaptureSession()
-    var previewLayer: AVCaptureVideoPreviewLayer!
-    let videoCaptureDataOutput = AVCaptureVideoDataOutput()
-    let audioCaptureDataOutput = AVCaptureAudioDataOutput()
-    let dataOutputQueue = DispatchQueue(label: "com.birdtree.CaptureDataOutputQueue", attributes: [])
+    public var previewLayer: AVCaptureVideoPreviewLayer!
+    public let videoCaptureDataOutput = AVCaptureVideoDataOutput()
+    public let audioCaptureDataOutput = AVCaptureAudioDataOutput()
+    public let dataOutputQueue = DispatchQueue(label: "com.birdtree.CaptureDataOutputQueue", attributes: [])
 
-    var videoConnection: AVCaptureConnection!
-    var audioConnection: AVCaptureConnection!
+    public var videoConnection: AVCaptureConnection!
+    public var audioConnection: AVCaptureConnection!
     
-    var delegate: CaptureSessionDelegate?
+    public var delegate: CaptureSessionDelegate?
     var progressTimer:Timer!
-    var maxRecordTimeInSeconds: TimeInterval = 120
+    public var maxRecordTimeInSeconds: TimeInterval = 120
     var numberOfTimesRecorded: UInt!
     var offset: CMTime?
     var audioOffset: CMTime?
-    var capturedDuration: CMTime!
+    public var capturedDuration: CMTime!
     var currentSessionTime: CMTime!
     var currentSessionAudioTime: CMTime!
     var sessionStartTime = kCMTimeInvalid
@@ -28,7 +28,7 @@ class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutpu
     var assetWriter: AVAssetWriter!
     var assetWriterVideoInput: AVAssetWriterInput?
     var assetWriterAudioInput: AVAssetWriterInput?
-    var isCapturing: Bool
+    public var isCapturing: Bool
     var firstFrameWrittenTime: CMTime?
     var lastWrittenFrameTime: CMTime?
     var lastWrittenAudioFrameTime: CMTime?
@@ -42,7 +42,7 @@ class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutpu
     
     var currentCameraInputDevice: AVCaptureDeviceInput?
     
-    init(delegate: CaptureSessionDelegate?, maxRecordTimeInSeconds: TimeInterval) {
+    public init(delegate: CaptureSessionDelegate?, maxRecordTimeInSeconds: TimeInterval) {
         isCapturing = false
         
         self.delegate = delegate
@@ -72,21 +72,21 @@ class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutpu
 
     }
 
-    func configureConnections() {
+    public func configureConnections() {
         videoConnection = videoCaptureDataOutput.connection(withMediaType: AVMediaTypeVideo)
         videoConnection.videoOrientation = AVCaptureVideoOrientation.portrait
         
         audioConnection = audioCaptureDataOutput.connection(withMediaType: AVMediaTypeAudio)
     }
     
-    func isCompleted() -> Bool {
+    public func isCompleted() -> Bool {
         return assetWriter.status == AVAssetWriterStatus.completed
     }
-    func isFailed() -> Bool {
+    public func isFailed() -> Bool {
         return assetWriter.status == AVAssetWriterStatus.failed
     }
     
-    func configureInputs() {
+    public func configureInputs() {
         addFrontFacingCameraInput()
         
         if (captureSession.canAddInput(captureDevice.audioInput)) {
@@ -106,14 +106,14 @@ class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutpu
         }
     }
 
-    func configureCaptureDataOutput() {
+    public func configureCaptureDataOutput() {
         videoCaptureDataOutput.videoSettings = nil //[kCVPixelBufferPixelFormatTypeKey: kCVPixelFormatType_32BGRA]
         videoCaptureDataOutput.setSampleBufferDelegate(self, queue: dataOutputQueue)
         
         audioCaptureDataOutput.setSampleBufferDelegate(self, queue: dataOutputQueue)
     }
     
-    func toggleCamera() {
+    public func toggleCamera() {
         captureSession.beginConfiguration()
         
         if let inputDevice = currentCameraInputDevice {
@@ -132,7 +132,7 @@ class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutpu
         captureSession.commitConfiguration()
     }
     
-    func addBackFacingCameraInput() {
+    public func addBackFacingCameraInput() {
         if let inputDevice = currentCameraInputDevice {
             if (inputDevice == captureDevice.backFacingCameraInput) { return; }
         }
@@ -148,7 +148,7 @@ class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutpu
         }
     }
     
-    func addFrontFacingCameraInput() {
+    public func addFrontFacingCameraInput() {
         if let inputDevice = currentCameraInputDevice {
             if (inputDevice == captureDevice.frontFacingCameraInput) { return; }
         }
@@ -165,7 +165,7 @@ class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutpu
         }
     }
     
-    func configureAssetWriter() {
+    public func configureAssetWriter() {
         var error: NSError?
         self.capturedVideo = StandardCapturedVideo()
         do {
@@ -179,7 +179,7 @@ class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutpu
         }
     }
     
-    func configureVideoInputForAssetWriter(_ assetWriter: AVAssetWriter, formatDescription: CMFormatDescription) -> Bool {
+    public func configureVideoInputForAssetWriter(_ assetWriter: AVAssetWriter, formatDescription: CMFormatDescription) -> Bool {
         var success = false
         DispatchQueue.main.sync(execute: { [weak self] () -> Void in
             if (self?.assetWriterVideoInput != nil) { success = true; return }
@@ -229,7 +229,7 @@ class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutpu
         return success
     }
     
-    func configureAudioInputForAssetWriter(_ assetWriter: AVAssetWriter, formatDescription: CMFormatDescription) -> Bool {
+    public func configureAudioInputForAssetWriter(_ assetWriter: AVAssetWriter, formatDescription: CMFormatDescription) -> Bool {
         var success = false
         DispatchQueue.main.sync(execute: { [weak self] () -> Void in
             if (self?.assetWriterAudioInput != nil) { success = true; return }
@@ -262,17 +262,17 @@ class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutpu
         return success
     }
     
-    func startRunning() {
+    public func startRunning() {
         if (captureSession.isRunning) { return }
         captureSession.startRunning()
     }
     
-    func stopRunning() {
+    public func stopRunning() {
         if (!captureSession.isRunning) { return }
         captureSession.stopRunning()
     }
     
-    func startCapturingWithCapturedVideo(_ capturedVideo: CapturedVideo?) {
+    public func startCapturingWithCapturedVideo(_ capturedVideo: CapturedVideo?) {
         objc_sync_enter(self)
 
         if (self.isCapturing || self.captureRequested) { return; }
@@ -281,7 +281,7 @@ class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutpu
         objc_sync_enter(self)
     }
     
-    func stopCapturing() {
+    public func stopCapturing() {
         objc_sync_enter(self)
 
         if (!self.isCapturing || !self.captureRequested) { return }
@@ -293,7 +293,7 @@ class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutpu
         objc_sync_exit(self)
     }
     
-    func finishUp() {
+    public func finishUp() {
         let completionHandler = {
             ()->Void in
             DispatchQueue.main.async { [weak self] in
@@ -314,11 +314,11 @@ class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutpu
         }
     }
     
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didDrop sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+    public func captureOutput(_ captureOutput: AVCaptureOutput!, didDrop sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
         Logger.logm("dropped sample")
     }
     
-    func startSessionIfNotYetStarted() {
+    public func startSessionIfNotYetStarted() {
         if self.firstFrameWrittenTime == nil {
             if (assetWriter.status == AVAssetWriterStatus.writing) {
                 assetWriter.startSession(atSourceTime: currentSessionTime)
@@ -327,13 +327,13 @@ class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutpu
         }
     }
     
-    func setSessionStartTimeIfNeeded() {
+    public func setSessionStartTimeIfNeeded() {
         if (CMTimeCompare(self.sessionStartTime, kCMTimeInvalid) == 0) {
             self.sessionStartTime = self.currentSessionTime
         }
     }
     
-    func writeSampleBuffer(_ sampleBuffer: CMSampleBuffer, forMediaType: String, presentationTime: CMTime!, presentationTimeOffset: CMTime?) {
+    public func writeSampleBuffer(_ sampleBuffer: CMSampleBuffer, forMediaType: String, presentationTime: CMTime!, presentationTimeOffset: CMTime?) {
         if (forMediaType != AVMediaTypeAudio && forMediaType != AVMediaTypeVideo) {
             return
         }
@@ -495,7 +495,7 @@ class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutpu
         }
     }
     
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+    public func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
         let formatDescription:CMFormatDescription = CMSampleBufferGetFormatDescription(sampleBuffer)!
 
         currentSessionTime = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
@@ -581,11 +581,11 @@ class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutpu
         }
     }
     
-    func isFrontCameraSupported() -> Bool {
+    public func isFrontCameraSupported() -> Bool {
         return captureDevice.isFrontFacingCameraSupported()
     }
     
-    func cleanup() {
+    public func cleanup() {
         numberOfTimesRecorded = 0
 
         offset = nil
@@ -610,7 +610,7 @@ class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutpu
         configureAssetWriter()
     }
     
-    func reset() {
+    public func reset() {
         numberOfTimesRecorded = 0
 
         offset = nil
@@ -634,16 +634,16 @@ class StopAndGoCaptureSession: NSObject, CaptureSession, AVCaptureVideoDataOutpu
         self.delegate?.captureSessionDidUpdateCaptureTimeToTimeInSeconds(0.0)
     }
 
-    func hasBegunCapturing() -> Bool {
+    public func hasBegunCapturing() -> Bool {
         return CMTimeCompare(capturedDuration, kCMTimeZero) == 1
     }
     
     // MARK: - Suspendable methods
-    func suspend() {
+    public func suspend() {
         self.captureSession.stopRunning()
     }
     
-    func resume() {
+    public func resume() {
         self.captureSession.startRunning()
     }
 
