@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'HiliteCapture'
-  s.version          = '0.1.3-alpha'
+  s.version          = '0.1.4-alpha'
   s.summary          = 'HiliteSDK capture module.'
 
 # This description is used to generate tags and improve search results.

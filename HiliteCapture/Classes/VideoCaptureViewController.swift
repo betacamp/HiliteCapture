@@ -14,16 +14,16 @@ open class VideoCaptureViewController: PortraitViewController, CaptureSessionDel
     public var captureSession:CaptureSession?
     public var captureAgent:VideoCaptureAgent?
     public var capturePreviewLayer:AVCaptureVideoPreviewLayer?
-    let recordButton = RecordProgressButton()
-    let redoButton = Button()
-    var reviewButton:Button!
-    var videoReviewView:InlineVideoReviewView!
-    var videoCaptureOverlayView: StandardVideoCaptureOverlayView?
-    var minimumRecordTimer: Timer?
-    var stopCaptureRequested = false
-    let userCapabilitiesAgent = UserCapabilitiesAgent()
-    var toggleCameraButton:Button!
-    var importFromCameraRollButton:Button!
+    public let recordButton = RecordProgressButton()
+    public let redoButton = Button()
+    public var reviewButton:Button!
+    public var videoReviewView:InlineVideoReviewView!
+    public var videoCaptureOverlayView: StandardVideoCaptureOverlayView?
+    public var minimumRecordTimer: Timer?
+    public var stopCaptureRequested = false
+    public let userCapabilitiesAgent = UserCapabilitiesAgent()
+    public var toggleCameraButton:Button!
+    public var importFromCameraRollButton:Button!
 
     public var taskAgent: TaskAgent?
 
