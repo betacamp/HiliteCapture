@@ -119,7 +119,7 @@ open class VideoCaptureViewController: PortraitViewController, CaptureSessionDel
         updateUI()
     }
     
-    public func didTapImportFromCameraRollButton(_ sender: AnyObject?) {
+    open func didTapImportFromCameraRollButton(_ sender: AnyObject?) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             
             let imagePicker = UIImagePickerController()
@@ -136,11 +136,11 @@ open class VideoCaptureViewController: PortraitViewController, CaptureSessionDel
         }
     }
     
-    public func didTapToggleButton(_ sender: AnyObject?) {
+    open func didTapToggleButton(_ sender: AnyObject?) {
         captureSession?.toggleCamera()
     }
     
-    public func configureCaptureOverlay() {
+    open func configureCaptureOverlay() {
         if let overlay = videoCaptureOverlayView {
             overlay.removeFromSuperview()
         }
@@ -176,13 +176,13 @@ open class VideoCaptureViewController: PortraitViewController, CaptureSessionDel
         return true
     }
     
-    public func updateOverlay() {
+    open func updateOverlay() {
         if let unwrappedTaskAgent = taskAgent {
             videoCaptureOverlayView?.configureWithTask(unwrappedTaskAgent.getTask()!)
         }
     }
     
-    public func configureCaptureSession() {
+    open func configureCaptureSession() {
         if let session = captureSession {
             if (session.isCompleted() || session.isFailed()) {
                 captureSession = StopAndGoCaptureSession(delegate: self, maxRecordTimeInSeconds: Double(maximumRecordTimeInSeconds))
@@ -200,7 +200,7 @@ open class VideoCaptureViewController: PortraitViewController, CaptureSessionDel
         }
     }
     
-    public func updateUI() {
+    open func updateUI() {
         DispatchQueue.main.async { [weak self] in
             
             guard let weakSelf = self else { return }
@@ -214,7 +214,7 @@ open class VideoCaptureViewController: PortraitViewController, CaptureSessionDel
         }
     }
 
-    public func reset() {
+    open func reset() {
         self.recordButton.progress = 0.0
         self.captureSession?.reset()
         self.configureCaptureSession()
@@ -223,7 +223,7 @@ open class VideoCaptureViewController: PortraitViewController, CaptureSessionDel
     }
     
     // MARK: - Actions
-    public func didTapRedoButton(_ sender: AnyObject?) {
+    open func didTapRedoButton(_ sender: AnyObject?) {
         Logger.logm()
         self.present(Alert.confirm("Redo?", message: "Are you sure you want to start over?", onConfirm: { [weak self] () -> () in
             self?.captureSession?.stopRunning()
@@ -233,7 +233,7 @@ open class VideoCaptureViewController: PortraitViewController, CaptureSessionDel
         }), animated: true) { () -> Void in }
     }
     
-    public func didTapRecordButton(_ sender: UIButton!) {
+    open func didTapRecordButton(_ sender: UIButton!) {
         if (minimumRecordTimer != nil) { return; }
         stopCaptureRequested = false
         if let session = captureSession {
@@ -245,7 +245,7 @@ open class VideoCaptureViewController: PortraitViewController, CaptureSessionDel
         }
     }
 
-    public func didTapStopButton(_ sender: UIButton!) {
+    open func didTapStopButton(_ sender: UIButton!) {
         stopCaptureRequested = true
         if (minimumRecordTimer == nil) {
             stopCapturing()
@@ -253,7 +253,7 @@ open class VideoCaptureViewController: PortraitViewController, CaptureSessionDel
         }
     }
 
-    public func minimumRecordTimerDidFire(_ timer: Timer!) {
+    open func minimumRecordTimerDidFire(_ timer: Timer!) {
         Logger.logm()
         recordButton.isEnabled = true
         minimumRecordTimer?.invalidate()
@@ -263,7 +263,7 @@ open class VideoCaptureViewController: PortraitViewController, CaptureSessionDel
         }
     }
 
-    public func stopCapturing() {
+    open func stopCapturing() {
         if let session = captureSession {
             session.stopCapturing()
             stopCaptureRequested = false
@@ -271,7 +271,7 @@ open class VideoCaptureViewController: PortraitViewController, CaptureSessionDel
         }
     }
 
-    public func didTapCancelButton(_ sender: UIButton!) {
+    open func didTapCancelButton(_ sender: UIButton!) {
         let exitBlock = {
             ()->() in
             self.captureSession!.stopRunning()
@@ -295,7 +295,7 @@ open class VideoCaptureViewController: PortraitViewController, CaptureSessionDel
         }
     }
 
-    public func didTapReviewButton(_ sender: UIButton!) {
+    open func didTapReviewButton(_ sender: UIButton!) {
         if let session = captureSession {
             ensureMinimumCaptureLength(CMTimeGetSeconds(session.capturedDuration),
                 longEnough: { ()->Void in
@@ -308,7 +308,7 @@ open class VideoCaptureViewController: PortraitViewController, CaptureSessionDel
         }
     }
     
-    public func ensureMinimumCaptureLength(_ length: Float64, longEnough: ()->Void, notLongEnough: ()->Void) {
+    open func ensureMinimumCaptureLength(_ length: Float64, longEnough: ()->Void, notLongEnough: ()->Void) {
         if (length >= minimumCaptureDuration) {
             longEnough()
         } else {
@@ -317,7 +317,7 @@ open class VideoCaptureViewController: PortraitViewController, CaptureSessionDel
     }
 
     // MARK: CaptureSessionDelegate methods
-    public func captureSessionDidUpdateCaptureTimeToTimeInSeconds(_ seconds: Float64) {
+    open func captureSessionDidUpdateCaptureTimeToTimeInSeconds(_ seconds: Float64) {
         DispatchQueue.main.async(execute: { [weak self] () -> Void in
             guard let weakSelf = self else { return }
             
@@ -327,13 +327,13 @@ open class VideoCaptureViewController: PortraitViewController, CaptureSessionDel
             weakSelf.recordButton.progress = CGFloat(progress)
         })
     }
-    public func captureSessionDidStartCapturing() {
+    open func captureSessionDidStartCapturing() {
         updateUI()
     }
-    public func captureSessionDidStopCapturing() {
+    open func captureSessionDidStopCapturing() {
         updateUI()
     }
-    public func captureSessionDidFinishCapturingVideo(_ capturedVideo: CapturedVideo) {
+    open func captureSessionDidFinishCapturingVideo(_ capturedVideo: CapturedVideo) {
         updateUI()
 
         let videoReviewAgent = VideoReviewAgent(capturedVideo: capturedVideo, delegate: self)
@@ -346,7 +346,7 @@ open class VideoCaptureViewController: PortraitViewController, CaptureSessionDel
     }
     
     // MARK: - VideoReviewAgentDelegate methods
-    public func videoReviewAgentDidAcceptVideo(_ agent: VideoReviewAgent) {
+    open func videoReviewAgentDidAcceptVideo(_ agent: VideoReviewAgent) {
         Logger.logm()
 
         let userId = ApplicationPreferencesBackedUserSession().userId()
@@ -358,7 +358,7 @@ open class VideoCaptureViewController: PortraitViewController, CaptureSessionDel
         }
     }
     
-    public func videoReviewAgent(_ agent: VideoReviewAgent, didDiscardVideoWithDiscardedBlock discardBlock: @escaping ()->()) {
+    open func videoReviewAgent(_ agent: VideoReviewAgent, didDiscardVideoWithDiscardedBlock discardBlock: @escaping ()->()) {
         Logger.logm()
         let alert = Alert.confirm("re-do?", message: "are you sure you want to re-do this video?") { [weak self] () -> () in
             discardBlock()
@@ -369,14 +369,14 @@ open class VideoCaptureViewController: PortraitViewController, CaptureSessionDel
     }
     
     // MARK: - VideoCaptureOverlayViewDelegate methods
-    public func videoCaptureOverlayViewDidTapCancelButton(_ overlayView: VideoCaptureOverlayView?) {
+    open func videoCaptureOverlayViewDidTapCancelButton(_ overlayView: VideoCaptureOverlayView?) {
         self.didTapCancelButton(nil)
     }
     // MARK: - Suspendable
-    public func suspend() {
+    open func suspend() {
         self.captureSession?.suspend()
     }
-    public func resume() {
+    open func resume() {
         self.captureSession?.resume()
     }
     
