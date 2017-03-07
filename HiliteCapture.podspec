@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'HiliteCapture'
-  s.version          = '0.1.1-alpha'
+  s.version          = '0.1.2-alpha'
   s.summary          = 'HiliteSDK capture module.'
 
 # This description is used to generate tags and improve search results.
@@ -42,7 +42,7 @@ TODO: Add long description of the pod here.
   # s.dependency 'AFNetworking', '~> 2.3'
 
   s.dependency "HiliteCore", "~> 0.1.18-alpha"
-  s.dependency "HiliteUI", "~> 0.1.7-alpha"
+  s.dependency "HiliteUI", "~> 0.1.17-alpha"
   s.dependency "SwiftyJSON"
 
 end
