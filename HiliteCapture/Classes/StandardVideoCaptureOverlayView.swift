@@ -4,11 +4,11 @@ import HiliteUI
 import HiliteCore
 
 open class StandardVideoCaptureOverlayView: UIControl, VideoCaptureOverlayView, TaskView {
-    let textView = HLTextView(frame: CGRect.zero)
-    let recipientNameLabel = HLLabel()
-    let customerNameLabel = HLLabel()
-    let cancelButton = Button()
-    let topBarView = HLView()
+    public let textView = HLTextView(frame: CGRect.zero)
+    public let recipientNameLabel = HLLabel()
+    public let customerNameLabel = HLLabel()
+    public let cancelButton = Button()
+    public let topBarView = HLView()
     public var delegate: VideoCaptureOverlayViewDelegate?
 
     public init(delegate: VideoCaptureOverlayViewDelegate?) {
